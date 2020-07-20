@@ -1,0 +1,116 @@
+{%extends 'musicbeats/basic.htm'%}
+{% block title%}MusicBeats{% endblock %}
+
+{% block body %}
+    {% load static %} 
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'musicbeats/music-3.jpg'%}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'musicbeats/music-3.jpg'%}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'musicbeats/music-3.jpg'%}" class="d-block w-100" alt="...">
+        </div>
+      </div>
+    </div>
+
+    <!-- ################################ CARDS ##################################################### -->
+
+    <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Trending Songs</h2>
+
+    <div class="row" style="padding-top: 2%; padding-left: 7%;">
+    {% for i in song %}
+    <div style="padding-left: 2%; padding-top: 1%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{{i.image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+        <p class="card-text" style="color: green;">Movie: {{i.movie}}</p>
+        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-outline-danger ">Listen Song</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+  <hr>
+
+  <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Favourite Playlist</h2>
+
+    <div class="row" style="padding-top: 2%; padding-left: 7%;">
+    
+    <div style="padding-left: 2%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Listen</a>
+      </div>
+    </div>
+  </div>
+    <div style="padding-left: 2%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Listen</a>
+      </div>
+    </div>
+  </div>
+    <div style="padding-left: 2%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Listen</a>
+      </div>        
+    </div>
+  </div>
+  </div>
+  <hr>
+
+  <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Liked Songs</h2>
+
+    <div class="row" style="padding-top: 2%; padding-left: 7%;">
+    
+    <div style="padding-left: 2%; padding-bottom: 3%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Listen</a>
+      </div>
+    </div>
+  </div>
+    <div style="padding-left: 2%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Listen</a>
+      </div>
+    </div>
+  </div>
+    <div style="padding-left: 2%;">
+    <div class="card" style="width: 18rem;">
+      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Listen</a>
+      </div>
+    
+    </div>
+  </div>
+  </div>
+
+
+{% endblock %}
