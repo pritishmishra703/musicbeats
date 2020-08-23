@@ -38,44 +38,26 @@
   </div>
   <hr>
 
-  <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Favourite Playlist</h2>
+  <h3 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Listen Later</h3>
 
-    <div class="row" style="padding-top: 2%; padding-left: 7%;">
-    
-    <div style="padding-left: 2%;">
+  <div class="row" style="padding-top: 2%; padding-left: 7%;">
+    {% for i in watch reversed %}
+    <div style="padding-left: 2%; padding-top: 1%;">
     <div class="card" style="width: 18rem;">
-      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
+      <img src="{{i.image}}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Listen</a>
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+        <p class="card-text" style="color: green;">Movie: {{i.movie}}</p>
+        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-outline-danger ">Listen Song</a>
       </div>
     </div>
   </div>
-    <div style="padding-left: 2%;">
-    <div class="card" style="width: 18rem;">
-      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Listen</a>
-      </div>
-    </div>
-  </div>
-    <div style="padding-left: 2%;">
-    <div class="card" style="width: 18rem;">
-      <img src="{% static 'musicbeats/music-3.jpg'%}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Listen</a>
-      </div>        
-    </div>
-  </div>
+  {% endfor %}
   </div>
   <hr>
 
-  <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Liked Songs</h2>
+  <h3 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Your Liked Songs</h3>
 
     <div class="row" style="padding-top: 2%; padding-left: 7%;">
     
