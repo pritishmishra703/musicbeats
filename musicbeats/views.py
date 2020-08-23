@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from musicbeats.models import Song, Watchlater, History
+from musicbeats.models import Song, Watchlater, History, Channel
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
@@ -81,6 +81,23 @@ def signup(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
 
+        # if User.objects.filter(username=username).exists():
+        #     messages.error(request, "Username is already taken. Please try another one !")
+        #     return redirect("/")
+
+        # if len(username) > 15:
+        #     messages.error(request, "Username must be less than 15 characters")
+        #     return redirect("/")
+        
+        # if not username.isalnum():
+        #     messages.error(request, "Username should only contain Letters and Numbers.")
+
+        # if pass1 != pass2:
+        #     messages.error(request, "Password Do not Match. Please Sign Up Again")
+        #     return redirect("/")
+
+
+            
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = first_name
         myuser.last_name = last_name
@@ -88,6 +105,9 @@ def signup(request):
         user = authenticate(username=username, password=pass1)
         from django.contrib.auth import login
         login(request, user)
+
+        channel = Channel(name=username)
+        channel.save()
 
         return redirect('/')
 
@@ -97,3 +117,22 @@ def logout_user(request):
     logout(request)
     return redirect("/")
 
+def channel(request, channel):
+    chan = Channel.objects.filter(name=channel).first()
+    return render(request, "musicbeats/channel.htm", {"channel": chan})
+
+def upload(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        singer = request.POST['singer']
+        tag = request.POST['tag']
+        image = request.POST['image']
+        movie = request.POST['movie']
+        credit = request.POST['credit']
+        song1 = request.FILES['file']
+
+        song_model = Song(name=name, singer=singer, tags=tag, image=image, movie=movie, credit=credit, song=song1)
+        song_model.save()
+
+
+    return render(request, "musicbeats/upload.htm")

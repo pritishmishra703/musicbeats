@@ -9,4 +9,6 @@ urlpatterns = [
     path('logout_user', views.logout_user, name='logout_user'),
     path('watchlater', views.watchlater, name='watchlater'),
     path('history', views.history, name='history'),
+    path('c/<str:channel>', views.channel, name='channel'),
+    path('upload', views.upload, name='upload'),
 ]
