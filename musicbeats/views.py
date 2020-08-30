@@ -119,7 +119,12 @@ def logout_user(request):
 
 def channel(request, channel):
     chan = Channel.objects.filter(name=channel).first()
-    return render(request, "musicbeats/channel.htm", {"channel": chan})
+    video_ids = str(chan.music).split(" ")[1:]
+
+    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(video_ids)])
+    song = Song.objects.filter(song_id__in=video_ids).order_by(preserved)    
+
+    return render(request, "musicbeats/channel.htm", {"channel": chan, "song": song})
 
 def upload(request):
     if request.method == "POST":
@@ -134,5 +139,12 @@ def upload(request):
         song_model = Song(name=name, singer=singer, tags=tag, image=image, movie=movie, credit=credit, song=song1)
         song_model.save()
 
+        music_id = song_model.song_id
+        channel_find = Channel.objects.filter(name=str(request.user))
+        print(channel_find)
+
+        for i in channel_find:
+            i.music += f" {music_id}"
+            i.save()
 
     return render(request, "musicbeats/upload.htm")
